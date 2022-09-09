@@ -1,0 +1,16 @@
+﻿@model ChallengeOne.Models.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Susbscription";
+}
+
+<div class="row justify-content-center">
+    <div class="card col-md-10">
+        <img src="~/img/undraw_profile.svg" class="img-circle mx-auto d-block" width="40%">
+        <div class="card-body text-center">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Email</p>
+            <a asp-action="Edit" class="btn btn-outline-success">Update</a>
+        </div>
+    </div>
+</div>

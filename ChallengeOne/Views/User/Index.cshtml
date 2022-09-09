@@ -1,0 +1,38 @@
+﻿@model List<ChallengeOne.Models.ViewModels.UserViewModel>
+@{
+    ViewData["Title"] = "Researchers";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">See other researchers</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+    </a>
+</div>
+
+<!-- Page Body -->
+@if (Model.Count() > 0)
+{
+    @foreach(var item in Model)
+    {
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-10 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@item.Name</div>
+                        <a class="d-md-block btn btn-primary" asp-action="SubscribeUser" asp-controller="Subscriber" asp-route-id=@item.Id>
+                            Subscribe
+                        </a>
+                        <a asp-action="SeeJournal" asp-controller="Journal" asp-route-idUser=@item.Id class="d-none d-sm-inline-block btn btn-secondary shadow-sm">See their journals</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>Don't suscribe to anyone yet.</p>
+}

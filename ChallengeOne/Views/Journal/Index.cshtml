@@ -1,0 +1,36 @@
+﻿@model List<ChallengeOne.Models.ViewModels.JournalViewModel>
+
+@{
+    ViewData["Title"] = "My journals";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Your journals</h1>
+    <a asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> Create new Journal
+    </a>
+</div>
+
+@if(Model.Count() > 0)
+{
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-6">@item.Title </div>
+                    <div class="col-md-6 text-end">
+                        <a asp-action="Details" asp-route-id=@item.Id class="btn btn-primary btn-sm">See</a>
+                        <a asp-action="Remove" asp-route-id=@item.Id class="btn btn-danger btn-sm mx-2">Remove</a>
+                    </div>
+                    
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>You don't have any journal</p>
+}

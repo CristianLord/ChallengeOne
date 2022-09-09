@@ -1,0 +1,80 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ChallengeOne
+build_property.RootNamespace = ChallengeOne
+build_property.ProjectDir = C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeOne\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeOne
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Access/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Access/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXFJlZ2lzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Journal/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm91cm5hbFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Journal/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm91cm5hbFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Journal/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm91cm5hbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Journal/SeeJournal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm91cm5hbFxTZWVKb3VybmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/User/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/User/Subscription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTdWJzY3JpcHRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-b4gdxtz3w2
+
+[C:/Users/Cristian/Documents/ChallengeOneSolution/ChallengeOne/Views/Shared/_LayoutAccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBY2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-lihmmku3id

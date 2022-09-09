@@ -16,8 +16,9 @@ namespace ChallengeOne.Controllers
             _database = database;
         }
 
-        public async Task<IActionResult> Index(int idUser)
+        public async Task<IActionResult> Index()
         {
+            var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             List<JournalViewModel> list = await (from journal in _database.Journals
                                                  where journal.IdUser == idUser
                                                  select new JournalViewModel
@@ -56,10 +57,11 @@ namespace ChallengeOne.Controllers
                             journal.File = target.ToArray();
                             journal.IdUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
                             journal.Title = viewModel.Title;
+                            journal.UploadDate = DateTime.Now;
 
                             await _database.Journals.AddAsync(journal);
                             await _database.SaveChangesAsync();
-                            return RedirectToAction(nameof(Index));
+                            return RedirectToAction("Index");
                         }
                     }
                 }

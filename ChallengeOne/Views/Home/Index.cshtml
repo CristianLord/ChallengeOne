@@ -6,24 +6,27 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Welcome</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+    <a asp-action="Create" asp-controller="Journal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> Upload new journal
     </a>
 </div>
 
 <!-- Page Body -->
-@if(Model.Count() > 0)
-{
-    foreach (var item in Model)
+<div class="container">
+    @if(Model.Count() > 0)
     {
-        <h4>@item.User.FirstName</h4>
-        <br />
-        <div class="container col-md-10">
-            <iframe src="data:application/pdf;base64,@(Convert.ToBase64String(@item.File))#toolbar=0" typeof="application/pdf" class="w-100" height="500"></iframe>
-        </div>
+        foreach (var item in Model)
+        {
+            <h4>@item.Title</h4>
+            <p>@item.User.FirstName</p>
+        
+            <div class="container my-3 col-md-10">
+                <iframe src="data:application/pdf;base64,@(Convert.ToBase64String(@item.File))#toolbar=0" typeof="application/pdf" class="w-100" height="500"></iframe>
+            </div>
+        }
     }
-}
-else
-{
-    <p>Don't suscribe to anyone yet.</p>
-}
+    else
+    {
+        <p>Don't suscribed to anyone yet.</p>
+    }
+</div>

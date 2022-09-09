@@ -31,7 +31,7 @@ namespace ChallengeOne.Controllers
                         where s.IdUser == idUser
                         select s.IdSubscribedUser)
                         .Contains(j.IdUser) && j.IdUser != idUser
-                       select j).ToListAsync();
+                       select j).Include("User").ToListAsync();
 
             return View(list);
         }

@@ -11,6 +11,7 @@ namespace ChallengeOne.Models
         public byte[]? File { get; set; }
         [ForeignKey("User")]
         public int IdUser { get; set; }
+        public DateTime UploadDate { get; set; }
 
         public virtual User? User { get; set; }
     }

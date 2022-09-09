@@ -33,41 +33,45 @@ namespace ChallengeOne.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                if(!EmailExist(register.Email))
                 {
-                    Models.User user = new()
+                    try
                     {
-                        FirstName = register.FirstName,
-                        LastName = register.LastName,
-                        Email = register.Email,
-                        Password = register.Password
-                    };
+                        Models.User user = new()
+                        {
+                            FirstName = register.FirstName,
+                            LastName = register.LastName,
+                            Email = register.Email,
+                            Password = register.Password
+                        };
 
-                    //Create a new user
-                    await _database.Users.AddAsync(user);
-                    await _database.SaveChangesAsync();
+                        //Create a new user
+                        await _database.Users.AddAsync(user);
+                        await _database.SaveChangesAsync();
 
-                    //Create a cookie
+                        //Create a cookie
 
-                    var claims = new List<Claim>
+                        var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                             new Claim(ClaimTypes.Name, user.FirstName)
                         };
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity));
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity));
 
-                    //Go to home page
-                    return RedirectToAction("Index", "Home");
+                        //Go to home page
+                        return RedirectToAction("Index", "Home");
+                    }
+                    catch (Exception e)
+                    {
+                        ViewBag.Error = e.Message;
+                    }
                 }
-                catch (Exception e)
-                {
-                    ViewBag.Error = e.Message;
-                }
 
+                ModelState.AddModelError("", "Email already exists");
             }
             return View();
         }
@@ -130,6 +134,16 @@ namespace ChallengeOne.Controllers
             return _database.Users.Where(
                 item => item.Email == loginModel.Email &&
                 item.Password == loginModel.Password).FirstOrDefault() != null;
+        }
+
+        /// <summary>
+        /// Check if a user´s email exist
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        private bool EmailExist(string email)
+        {
+            return _database.Users.Where(item => item.Email == email).FirstOrDefault() != null;
         }
 
         //Sign out

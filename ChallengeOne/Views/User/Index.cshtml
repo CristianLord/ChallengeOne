@@ -6,33 +6,25 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">See other researchers</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-    </a>
 </div>
 
 <!-- Page Body -->
-@if (Model.Count() > 0)
-{
-    @foreach(var item in Model)
+<div class="row justify-content-center">
+    @if (Model.Count() > 0)
     {
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-10 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">@item.Name</div>
-                        <a class="d-md-block btn btn-primary" asp-action="SubscribeUser" asp-controller="Subscriber" asp-route-id=@item.Id>
-                            Subscribe
-                        </a>
-                        <a asp-action="SeeJournal" asp-controller="Journal" asp-route-idUser=@item.Id class="d-none d-sm-inline-block btn btn-secondary shadow-sm">See their journals</a>
+        @foreach(var item in Model)
+        {
+            <div class="card col-md-5 m-3">
+                    <img src="~/img/undraw_profile_2.svg" class="img-circle w-50 mx-auto d-block">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Name</h5>
+                         <a class="d-md-block btn btn-primary" asp-action="SubscribeUser" asp-controller="Subscriber" asp-route-id=@item.Id>
+                                    Subscribe
+                         </a>
+                         <a asp-action="SeeJournal" asp-controller="Journal" asp-route-idUser=@item.Id class="d-md-block my-2 btn btn-secondary shadow-sm">See their journals</a>
                     </div>
-                </div>
             </div>
-        </div>
+        
+        }
     }
-}
-else
-{
-    <p>Don't suscribe to anyone yet.</p>
-}
+</div>

@@ -83,7 +83,7 @@ namespace ChallengeOne.Controllers
             return RedirectToAction("Subscription");
         }
 
-
+        
         /// <summary>
         /// Shows current user's profile
         /// </summary>

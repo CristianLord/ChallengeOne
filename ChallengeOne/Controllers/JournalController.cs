@@ -34,7 +34,7 @@ namespace ChallengeOne.Controllers
             return View();
         }
 
-        // POST: JournalController/Create
+        //Create a new journal
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(JournalViewModel viewModel)
@@ -82,6 +82,64 @@ namespace ChallengeOne.Controllers
                 return NotFound();
             return View(journal);
         }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            JournalViewModel? journal = await (from j in _database.Journals where j.Id == id select new JournalViewModel
+            {
+                Id = j.Id,
+                Title = j.Title
+            }).FirstOrDefaultAsync();
+
+            if (journal == null)
+                return NotFound();
+
+            return View(journal);
+        }
+
+        // POST: JournalController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(JournalViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
+            try
+            {
+                var journal = new Journal();
+
+                if (viewModel.File != null)
+                {
+                    if (viewModel.File.Length > 0 && viewModel.File.Length < 500000)
+                    {
+                        using (var target = new MemoryStream())
+                        {
+                            viewModel.File.CopyTo(target);
+                            journal.File = target.ToArray();
+                            journal.Id = viewModel.Id;
+                            journal.IdUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                            journal.Title = viewModel.Title;
+                            journal.UploadDate = DateTime.Now;
+
+                            _database.Journals.Update(journal);
+                            await _database.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    ViewBag.Error = "File is too heavy.";
+                }
+                ViewBag.Error = "File is empty";
+                return View(viewModel);
+            }
+            catch
+            {
+                ViewBag.Message = "Something went wrong.";
+                return View(viewModel);
+            }
+        }
+
 
         public async Task<IActionResult> Remove(int id)
         {

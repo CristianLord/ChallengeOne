@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChallengeOne.Models
 {
+    /// <summary>
+    /// Journal model.
+    /// </summary>
     public class Journal
     {
         [Key]

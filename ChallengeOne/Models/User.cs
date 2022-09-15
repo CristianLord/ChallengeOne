@@ -1,5 +1,8 @@
 ﻿namespace ChallengeOne.Models
 {
+    /// <summary>
+    /// User model.
+    /// </summary>
     public class User
     {
         public int Id { get; set; }

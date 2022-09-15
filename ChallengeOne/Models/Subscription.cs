@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ChallengeOne.Models
 {
+    /// <summary>
+    /// Subscription model.
+    /// </summary>
     public class Subscription
     {
         [Key]

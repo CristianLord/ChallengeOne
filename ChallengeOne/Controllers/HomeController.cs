@@ -5,9 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
+using System.Web;
 
 namespace ChallengeOne.Controllers
 {
+    /// <summary>
+    /// This is home view controller
+    /// </summary>
     [Authorize]
     public class HomeController : Controller
     {
@@ -24,6 +28,7 @@ namespace ChallengeOne.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index() 
         {
+            
             var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var list = await (from j in _database.Journals
                        where

@@ -1,4 +1,6 @@
 using ChallengeOne.Data;
+using ChallengeOne.Repository;
+using ChallengeOne.Repository.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         option.LoginPath = "/Access/Login";
     });
+
+builder.Services.AddScoped<IAccessRepository, AccessRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IJournalRepository, JournalRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 var app = builder.Build();
 

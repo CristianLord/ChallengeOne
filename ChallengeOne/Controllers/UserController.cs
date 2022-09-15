@@ -1,24 +1,21 @@
-﻿
-using ChallengeOne.Data;
-using ChallengeOne.Models;
-using ChallengeOne.Models.ViewModels;
+﻿using ChallengeOne.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using System.Security.Claims;
 
 namespace ChallengeOne.Controllers
 {
+    /// <summary>
+    /// This is user view controller
+    /// </summary>
     [Authorize]
     public class UserController : Controller
     {
-        private readonly DatabaseContext _database;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(DatabaseContext database)
+        public UserController(IUserRepository userRepository)
         {
-            _database = database;
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -27,62 +24,23 @@ namespace ChallengeOne.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-            var list = await (from user in _database.Users where 
-                        !(from s in _database.Subscriptions 
-                          where s.IdUser == idUser select s.IdSubscribedUser)
-                          .Contains(user.Id) && user.Id != idUser
-                         select new UserViewModel
-                         {
-                             Id = user.Id,
-                             Name = user.FirstName + " " + user.LastName
-                         }).ToListAsync();
-
-            return View(list);
-        }
-
-        /// <summary>
-        /// Shows current user's subscriptions
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IActionResult> Subscription()
-        {
-            var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-            var list = await (from u in _database.Users
-                       join s in _database.Subscriptions
-                       on u.Id equals s.IdSubscribedUser
-                       where s.IdUser == idUser
-                       select new UserViewModel
-                       {
-                           Id = u.Id,
-                           Name = u.FirstName + " " + u.LastName
-                       }).ToListAsync();
-            return View(list);
-        }
-
-
-
-        /// <summary>
-        /// Unsubscribed the current user to other
-        /// </summary>
-        /// <param name="id">ID of the user to unsubcribe</param>
-        /// <returns></returns>
-        public async Task<IActionResult> Unsubscription(int id)
-        {
-            var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-            var subscription = await _database.Subscriptions.Where(s => s.IdUser == idUser && s.IdSubscribedUser == id).FirstOrDefaultAsync();
-            if (subscription != null)
+            try
             {
-                _database.Subscriptions.Remove(subscription);
-                await _database.SaveChangesAsync();
-            }
-                
-            return RedirectToAction("Subscription");
-        }
+                var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                if (idUser == 0)
+                    return NotFound();
 
+                var list = await _userRepository.GetAllWithoutSubscriptions(idUser);
+                if (list == null)
+                    return NotFound();
+
+                return View(list);
+            }
+            catch(Exception e)
+            {
+                return NotFound(e);
+            }
+        }
         
         /// <summary>
         /// Shows current user's profile
@@ -90,17 +48,24 @@ namespace ChallengeOne.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Profile()
         {
-            var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            try
+            {
+                var idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            var user = await (from u in _database.Users
-                              where u.Id == idUser
-                              select new UserViewModel
-                              {
-                                  Id = u.Id,
-                                  Name = u.FirstName + " " + u.LastName,
-                                  Email = u.Email
-                              }).FirstAsync();
-            return View(user);
+                if (idUser == 0)
+                    return NotFound();
+
+                var user = await _userRepository.GetViewUser(idUser);
+
+                if (user == null)
+                    return NotFound();
+
+                return View(user);
+            }
+            catch(Exception e)
+            {
+                return NotFound(e);
+            }
         }
     }
 }

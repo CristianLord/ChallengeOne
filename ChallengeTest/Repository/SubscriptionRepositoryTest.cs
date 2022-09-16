@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace ChallengeOne.Test.Repository
 {
+    /// <summary>
+    /// Verify some functionality of the Subscription repository.
+    /// </summary>
     public class SubscriptionRepositoryTest
     {
         private async Task<DatabaseContext> GetDatabaseContext()
@@ -57,8 +60,26 @@ namespace ChallengeOne.Test.Repository
             return databaseContext;
         }
 
+        //If a user subscribe to another succesfully
         [Fact]
         public async Task SubscriptionRepository_SubscriptionTo_Ok()
+        {
+            //Arrange
+            int idUser = 2;
+            int idSubscription = 1;
+            var database = await GetDatabaseContext();
+            var subscriptionRepository = new SubscriptionRepository(database);
+
+            //Act
+            var result = await subscriptionRepository.SubscribeTo(idUser, idSubscription);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        //If a user unsubscribe to another succesfully
+        [Fact]
+        public async Task SubscriptionRepository_Unsubscription_Ok()
         {
             //Arrange
             int idUser = 1;
@@ -67,7 +88,7 @@ namespace ChallengeOne.Test.Repository
             var subscriptionRepository = new SubscriptionRepository(database);
 
             //Act
-            var result = await subscriptionRepository.SubscribeTo(idUser, idSubscription);
+            var result = await subscriptionRepository.Unsubscription(idSubscription, idUser);
 
             //Assert
             Assert.True(result);

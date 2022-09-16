@@ -15,7 +15,9 @@ C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\ChallengeOne.Test.runtimeconfig.json
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\ChallengeOne.Test.dll
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\ChallengeOne.Test.pdb
+C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\itextsharp.dll
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\MessagePack.dll
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\MessagePack.Annotations.dll
 C:\Users\Cristian\Documents\ChallengeOneSolution\ChallengeTest\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll

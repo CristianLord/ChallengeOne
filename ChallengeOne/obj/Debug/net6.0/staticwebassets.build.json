@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oI3DMgq0O1BJnsl7b3KgcqZKglLL5URohims6K2+7Sc=",
+  "Hash": "n1Gi4GxnqG9bGw80TPb/ck5/2vw0fWp3P+FQA3PzOuU=",
   "Source": "ChallengeOne",
   "BasePath": "_content/ChallengeOne",
   "Mode": "Default",
@@ -746,6 +746,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\undraw_rocket.svg"
+    },
+    {
+      "Identity": "C:\\Users\\Cristian\\Documents\\ChallengeOneSolution\\ChallengeOne\\wwwroot\\js\\pdf\\Archivo.pdf",
+      "SourceId": "ChallengeOne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Cristian\\Documents\\ChallengeOneSolution\\ChallengeOne\\wwwroot\\",
+      "BasePath": "_content/ChallengeOne",
+      "RelativePath": "js/pdf/Archivo.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\pdf\\Archivo.pdf"
     },
     {
       "Identity": "C:\\Users\\Cristian\\Documents\\ChallengeOneSolution\\ChallengeOne\\wwwroot\\js\\pdf\\pdf.min.js",

@@ -1,10 +1,13 @@
 ﻿using ChallengeOne.Data;
 using ChallengeOne.Models;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
+using System.Text;
 using System.Web;
 
 namespace ChallengeOne.Controllers
@@ -37,7 +40,7 @@ namespace ChallengeOne.Controllers
                         select s.IdSubscribedUser)
                         .Contains(j.IdUser) && j.IdUser != idUser
                        select j).Include("User").OrderByDescending(m => m.UploadDate).ToListAsync();
-
+            
             return View(list);
         }
 

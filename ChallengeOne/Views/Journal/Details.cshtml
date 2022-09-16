@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<script type="text/javascript" src="@Url.Content("~/js/pdf/pdf.min.js")"></script>
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -17,5 +17,86 @@
 </div>
 
 <div class="container col-md-10">
-    <iframe src="data:application/pdf;base64,@(Convert.ToBase64String(Model.File))#toolbar=0" typeof="application/pdf" class="w-100" height="500px"></iframe>
+    <canvas id="the-canvas" style="border: 1px solid black; direction: ltr;" class="w-100"></canvas>
+    <div class="row">
+        <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+    </div>
+    <div class="row">
+        <a id="prev" class="col-4 btn btn-sm btn-secondary">Previuos</a>
+        <a id="next" class="col-4 mx-2 btn btn-sm btn-success">Next</a>
+    </div>
 </div>
+
+<script>
+    //
+    // The workerSrc property shall be specified.
+    //https://cdn.jsdelivr.net/npm/pdfjs-dist@2.4.456/build/pdf.worker.min.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '@Url.Content("~/js/pdf/pdf.worker.min.js")';
+
+    var pdfDoc = null,
+        url = '@(@Url.Content("~/File.pdf"))',
+        pageNum = 1,
+        pageRendering = false,
+        pageNumPending = null,
+        scale = 1.5,
+        canvas = document.getElementById('the-canvas'),
+        ctx = canvas.getContext('2d');
+
+    function renderPage(num) {
+        pageRendering = true
+        pdfDoc.getPage(num).then((page) => {
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = viewport.height
+            canvas.width = viewport.width
+
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            }
+            var renderTask = page.render(renderContext)
+            renderTask.promise.then(() => {
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending)
+                    pageNumPending = null
+                }
+            })
+        })
+        document.getElementById('page_num').textContent = num;
+    }
+
+    function queueRenderPage(num) {
+        if (pageRendering) {
+            pageNumPending = num
+        } else {
+            renderPage(num)
+        }
+    }
+
+    function onPrevPage() {
+        if (pageNum <= 1) {
+            return
+        }
+        pageNum--;
+        queueRenderPage(pageNum)
+    }
+    document.getElementById('prev').addEventListener('click', onPrevPage)
+
+    function onNextPage() {
+        if (pageNum >= pdfDoc.numPages) {
+            return
+        }
+        pageNum++;
+        queueRenderPage(pageNum)
+    }
+    document.getElementById('next').addEventListener('click', onNextPage)
+
+    // Opening PDF by passing its binary data as a string. It is still preferable
+    // to use Uint8Array, but string or array-like structure will work too.
+    var loadingTask = pdfjsLib.getDocument(url);
+    loadingTask.promise.then(function (pdf) {
+        pdfDoc = pdf
+        document.getElementById('page_count').textContent = pdf.numPages;
+        renderPage(pageNum)
+    });
+</script>

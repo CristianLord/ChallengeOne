@@ -13,6 +13,9 @@ using Xunit;
 
 namespace ChallengeOne.Test.Repository
 {
+    /// <summary>
+    /// Verify some functionality of the Subscription repository.
+    /// </summary>
     public class UserRepositoryTest
     {
 
@@ -42,6 +45,7 @@ namespace ChallengeOne.Test.Repository
             return databaseContext;
         }
 
+        //If all users is succesfully obtained.
         [Fact]
         public async Task UserRepository_GetAll_Ok()
         {
@@ -57,6 +61,7 @@ namespace ChallengeOne.Test.Repository
             Assert.NotNull(result);
         }
 
+        //If a users is succesfully obtained.
         [Fact]
         public async Task UserRepository_GetUser_Ok()
         {
@@ -73,6 +78,7 @@ namespace ChallengeOne.Test.Repository
             Assert.NotNull(result);
         }
 
+        //If a users is succesfully obtained to view.
         [Fact]
         public async Task UserRepository_GetViewUser_Ok()
         {
@@ -89,6 +95,7 @@ namespace ChallengeOne.Test.Repository
             Assert.NotNull(result);
         }
 
+        //If all users without subscriptions is succesfully obtained.
         [Fact]
         public async Task UserRepository_GetAllWithoutSubscriptions_Ok()
         {

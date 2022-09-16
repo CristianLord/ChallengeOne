@@ -13,6 +13,9 @@ using Xunit;
 
 namespace ChallengeOne.Test.Repository
 {
+    /// <summary>
+    /// Verify some functionality of the Journal repository
+    /// </summary>
     public class JournalRepositoryTest
     {
         private async Task<DatabaseContext> GetDatabaseContext()
@@ -50,6 +53,7 @@ namespace ChallengeOne.Test.Repository
             return databaseContext;
         }
 
+        // if the user is successfully obtained.
         [Fact]
         public async Task JournalRepository_GetByIdUser_Ok()
         {
@@ -66,6 +70,7 @@ namespace ChallengeOne.Test.Repository
             Assert.NotNull(result);
         }
 
+        //If a journal is succesfully created.
         [Fact]
         public async Task JournalRepository_Create_Ok()
         {
@@ -85,6 +90,7 @@ namespace ChallengeOne.Test.Repository
             Assert.False(result);
         }
 
+        //If the user is succesfully obtenined.
         [Fact]
         public async Task JournalRepository_GetById()
         {

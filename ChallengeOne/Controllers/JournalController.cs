@@ -91,6 +91,7 @@ namespace ChallengeOne.Controllers
                 if (journal == null)
                     return NotFound();
 
+                System.IO.File.WriteAllBytes("wwwroot/File.pdf", journal.File);
                 return View(journal);
             }
             catch(Exception e)
